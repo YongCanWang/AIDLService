@@ -22,15 +22,14 @@ import com.mapscloud.aidlservice.R;
  * @description:
  * @date:2023/2/22 16:24
  */
-public class DataService extends Service {
+public class AIDLService extends Service {
     private static String TAG = "DataService";
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         Log.e(TAG, "onBind");
-//        return new DataBeanImpl();
-        return null;
+        return new DataBeanImpl(); // 必须返回实质性(非空)对象，才会触发onServiceConnected方法
     }
 
     @Override
@@ -73,6 +72,8 @@ public class DataService extends Service {
         super.onRebind(intent);
     }
 
+
+
     private void startForeground() {
 //        Notification.Builder builder = new Notification.Builder(this); //获取一个Notification构造器
 //        Intent nfIntent = new Intent(this, MainActivity.class);
@@ -84,7 +85,8 @@ public class DataService extends Service {
 //                .setWhen(System.currentTimeMillis()); // 设置该通知发生的时间
 
         /**
-         *  参数1： 设置为0报错ANR未在5s内调用startFroeground(),但是已经调用该方法
+         *  参数1： targetSDK大于等于28时：
+         *         设置为0报错ANR未在5s内调用startFroeground(),但是已经调用该方法
          *         设置为其他值，提示未注册android.permission.FOREGROUND_SERVICE权限，但是该权限已注册
          */
 //        startForeground(0, builder.build());

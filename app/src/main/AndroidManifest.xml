@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mapscloud.aidlservice">
 
-    <!--前台服务权限-->
-    <permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <!--前台服务权限 等级为正常权限：targetSdk大于等于28 需要注册前台服务权限，小于28则不需要-->
+    <permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -25,10 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".aidl.DataService"
+        <service
+            android:name=".aidl.AIDLService"
             android:exported="true">
             <intent-filter android:priority="1000">
-                <action android:name="com.mapscloud.aidlservice.aidl.dataservice.action" />
+                <action android:name="com.mapscloud.aidlservice.aidl.aidlservice.action" />
             </intent-filter>
         </service>
     </application>

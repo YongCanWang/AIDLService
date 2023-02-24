@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId "com.mapscloud.aidlservice"
         minSdk 28
-        targetSdk 28
+        targetSdk 27  // targetSdk大于等于28 需要注册前台服务权限，小于28则不需要
         versionCode 1
         versionName "1.0"
 

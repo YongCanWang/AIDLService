@@ -14,7 +14,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
-import com.mapscloud.aidlservice.MainActivity;
+import com.mapscloud.ui.MainActivity;
 import com.mapscloud.aidlservice.R;
 
 /**

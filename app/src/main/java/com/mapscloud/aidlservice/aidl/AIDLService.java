@@ -23,13 +23,13 @@ import com.mapscloud.aidlservice.R;
  * @date:2023/2/22 16:24
  */
 public class AIDLService extends Service {
-    private static String TAG = "DataService";
+    private static String TAG = "AIDLService";
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         Log.e(TAG, "onBind");
-        return new DataBeanImpl(); // 必须返回实质性(非空)对象，才会触发onServiceConnected方法
+        return new IMyAidlInterfaceImpl(); // 必须返回实质性(非空)对象，才会触发onServiceConnected方法
     }
 
     @Override
@@ -47,18 +47,15 @@ public class AIDLService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e(TAG, "onStartCommand: 传递过来的数据" + intent.getStringExtra("aidlclient"));
-        Log.e(TAG, "onStartCommand");
         startForeground();
         return super.onStartCommand(intent, flags, startId);
     }
-
 
     @Override
     public void onDestroy() {
         Log.e(TAG, "onDestroy");
         super.onDestroy();
     }
-
 
     @Override
     public boolean onUnbind(Intent intent) {
@@ -71,8 +68,6 @@ public class AIDLService extends Service {
         Log.e(TAG, "onRebind");
         super.onRebind(intent);
     }
-
-
 
     private void startForeground() {
 //        Notification.Builder builder = new Notification.Builder(this); //获取一个Notification构造器
@@ -90,7 +85,6 @@ public class AIDLService extends Service {
          *         设置为其他值，提示未注册android.permission.FOREGROUND_SERVICE权限，但是该权限已注册
          */
 //        startForeground(0, builder.build());
-
 
         try {
             String ID = "com.mapscloud.aidlservice";    //这里的id里面输入自己的项目的包的路径
@@ -126,6 +120,5 @@ public class AIDLService extends Service {
             e.printStackTrace();
             Log.e(TAG, "启动通知错误：" + e);
         }
-
     }
 }
